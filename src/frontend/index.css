@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Magal Chai Design Tokens ── */
+/* Fraunces (display/headings) + General Sans (body) */
+
+@font-face {
+  font-family: "Fraunces";
+  src: url("/assets/fonts/Fraunces.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "General Sans";
+  src: url("/assets/fonts/GeneralSans.woff2") format("woff2");
+  font-weight: 200 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+
+    /* ── Chai Brand Palette (OKLCH raw L C H) ──
+       Saffron:       oklch(0.72 0.18 55)  — deep saffron orange
+       Cinnamon:      oklch(0.35 0.09 48)  — warm brown
+       Cream:         oklch(0.97 0.03 80)  — soft warm cream
+       Spice dark:    oklch(0.22 0.06 45)  — deep espresso
+    */
+
+    --background: 0.97 0.03 80;          /* soft cream */
+    --foreground: 0.22 0.06 45;          /* deep espresso/cinnamon */
+    --card: 0.99 0.02 75;                /* near-white warm card */
+    --card-foreground: 0.22 0.06 45;
+    --popover: 0.99 0.02 75;
+    --popover-foreground: 0.22 0.06 45;
+    --primary: 0.68 0.19 52;             /* deep saffron */
+    --primary-foreground: 0.99 0.01 80;  /* cream on saffron */
+    --secondary: 0.93 0.05 78;           /* warm light cream */
+    --secondary-foreground: 0.35 0.09 48;/* cinnamon brown */
+    --muted: 0.93 0.04 76;
+    --muted-foreground: 0.52 0.07 48;
+    --accent: 0.55 0.14 50;              /* medium cinnamon accent */
+    --accent-foreground: 0.99 0.01 80;
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+    --border: 0.88 0.05 72;              /* warm border */
+    --input: 0.88 0.05 72;
+    --ring: 0.68 0.19 52;                /* saffron ring */
+    --chart-1: 0.68 0.19 52;
+    --chart-2: 0.55 0.14 50;
+    --chart-3: 0.35 0.09 48;
+    --chart-4: 0.80 0.15 72;
+    --chart-5: 0.72 0.18 55;
+    --sidebar: 0.97 0.03 80;
+    --sidebar-foreground: 0.22 0.06 45;
+    --sidebar-primary: 0.68 0.19 52;
+    --sidebar-primary-foreground: 0.99 0.01 80;
+    --sidebar-accent: 0.93 0.05 78;
+    --sidebar-accent-foreground: 0.35 0.09 48;
+    --sidebar-border: 0.88 0.05 72;
+    --sidebar-ring: 0.68 0.19 52;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "General Sans", sans-serif;
+    font-feature-settings: "kern" 1, "liga" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: "Fraunces", serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: "Fraunces", serif;
+  }
+  .font-body {
+    font-family: "General Sans", sans-serif;
+  }
+
+  /* Grain texture overlay for hero/atmosphere */
+  .grain-overlay::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+    pointer-events: none;
+    z-index: 1;
+  }
+}
